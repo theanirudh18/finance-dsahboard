@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Dashboard</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Syne:wght@400..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <h2>FinanceApp</h2>
+            </div>
+            
+            <nav class="nav-menu">
+                <button class="nav-item active" data-page="dashboard">
+                    <span class="icon">📊</span>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-item" data-page="transactions">
+                    <span class="icon">💸</span>
+                    <span>Transactions</span>
+                </button>
+                <button class="nav-item" data-page="insights">
+                    <span class="icon">📈</span>
+                    <span>Insights</span>
+                </button>
+            </nav>
+
+            <div class="role-toggle-container">
+                <span class="role-label">Viewer</span>
+                <label class="switch">
+                    <input type="checkbox" id="roleToggle">
+                    <span class="slider round"></span>
+                </label>
+                <span class="role-label admin-label">Admin</span>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <h1 id="pageTitle">Dashboard</h1>
+                <div class="user-profile">
+                    <div class="avatar">AS</div>
+                </div>
+            </header>
+
+            <!-- Pages -->
+            <div id="pagesContainer" class="pages-container">
+                <!-- Dashboard Page -->
+                <div id="dashboardPage" class="page active">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-title">Total Balance</span>
+                            <h2 class="stat-value" id="dashTotalBalance">$0.00</h2>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-title">Income</span>
+                            <h2 class="stat-value positive" id="dashTotalIncome">+$0.00</h2>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-title">Expenses</span>
+                            <h2 class="stat-value negative" id="dashTotalExpenses">-$0.00</h2>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-title">This Month Spend</span>
+                            <h2 class="stat-value" id="dashMonthSpend">$0.00</h2>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-content">
+                        <!-- Chart section -->
+                        <div class="chart-section panel">
+                            <h3>Monthly Overview</h3>
+                            <div class="chart-container" id="barChartContainer">
+                                <!-- Bars rendered via JS -->
+                            </div>
+                            <div class="chart-labels" id="barChartLabels"></div>
+                        </div>
+
+                        <!-- Recent transactions list -->
+                        <div class="recent-transactions-section panel">
+                            <div class="section-header">
+                                <h3>Recent Transactions</h3>
+                            </div>
+                            <div class="transaction-list" id="dashTransactionList">
+                                <!-- Rendered via JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Transactions Page -->
+                <div id="transactionsPage" class="page">
+                    <div class="transactions-header">
+                        <div class="controls-row">
+                            <input type="text" id="searchInput" placeholder="Search transactions..." class="input-field">
+                            <select id="filterType" class="select-field">
+                                <option value="all">All Types</option>
+                                <option value="income">Income</option>
+                                <option value="expense">Expense</option>
+                            </select>
+                            <select id="filterCategory" class="select-field">
+                                <option value="all">All Categories</option>
+                                <option value="Housing">Housing</option>
+                                <option value="Food">Food</option>
+                                <option value="Transportation">Transportation</option>
+                                <option value="Utilities">Utilities</option>
+                                <option value="Entertainment">Entertainment</option>
+                                <option value="Salary">Salary</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <select id="sortBy" class="select-field">
+                                <option value="date-desc">Newest First</option>
+                                <option value="date-asc">Oldest First</option>
+                                <option value="amount-desc">Highest Amount</option>
+                                <option value="amount-asc">Lowest Amount</option>
+                            </select>
+                        </div>
+                        <button id="addTransactionBtn" class="primary-btn admin-only">
+                            + Add Transaction
+                        </button>
+                    </div>
+
+                    <div class="table-container panel">
+                        <table class="transactions-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                    <th>Category</th>
+                                    <th>Amount</th>
+                                    <th class="action-column admin-only">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transactionTableBody">
+                                <!-- Rendered via JS -->
+                            </tbody>
+                        </table>
+                        <div id="emptyState" class="empty-state hidden">
+                            <p>No transactions found matching criteria.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Insights Page -->
+                <div id="insightsPage" class="page">
+                    <div class="insights-grid">
+                        <div class="insight-card panel">
+                            <h3>Top Spending Category</h3>
+                            <h2 class="insight-value" id="topCategoryName">--</h2>
+                            <p class="insight-subtext" id="topCategoryAmount">$0.00</p>
+                        </div>
+                        <div class="insight-card panel">
+                            <h3>Savings Rate</h3>
+                            <h2 class="insight-value highlight" id="savingsRate">0%</h2>
+                            <p class="insight-subtext">This month</p>
+                        </div>
+                        
+                        <div class="category-breakdown-panel panel full-width">
+                            <h3>Expense Categories Breakdown</h3>
+                            <div id="categoryBreakdownList" class="breakdown-list">
+                                <!-- Rendered via JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Transaction Modal -->
+    <div id="transactionModal" class="modal-overlay hidden">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modalTitle">Add Transaction</h3>
+                <button id="closeModalBtn" class="close-btn">&times;</button>
+            </div>
+            <form id="transactionForm" class="modal-form">
+                <input type="hidden" id="transId">
+                <div class="form-group">
+                    <label for="transType">Type</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="transType" value="expense" checked> Expense
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="transType" value="income"> Income
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="transDate">Date</label>
+                    <input type="date" id="transDate" required class="input-field">
+                </div>
+                <div class="form-group">
+                    <label for="transDescription">Description</label>
+                    <input type="text" id="transDescription" required placeholder="e.g. Groceries" class="input-field">
+                </div>
+                <div class="form-group">
+                    <label for="transAmount">Amount</label>
+                    <input type="number" id="transAmount" required min="0.01" step="0.01" placeholder="0.00" class="input-field">
+                </div>
+                <div class="form-group">
+                    <label for="transCategory">Category</label>
+                    <select id="transCategory" required class="select-field">
+                        <option value="Housing">Housing</option>
+                        <option value="Food">Food</option>
+                        <option value="Transportation">Transportation</option>
+                        <option value="Utilities">Utilities</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Salary">Salary</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="cancelModalBtn" class="secondary-btn">Cancel</button>
+                    <button type="submit" class="primary-btn">Save Transaction</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
