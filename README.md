@@ -1,42 +1,116 @@
-# Vanilla Finance Dashboard
+# 💰 Finance Dashboard
 
-A complete Financial Dashboard web application built using only Vanilla TypeScript, HTML, and CSS (no frameworks or libraries).
+A modern and responsive **Finance Dashboard** built using HTML, CSS, and TypeScript.
+It helps users track income, expenses, and visualize financial data in a clean UI.
 
-## Features
+---
 
-- **Dashboard**: High-level overview with stat cards, recent transactions, and a monthly income vs. expense bar chart.
-- **Transactions**: Sortable and filterable table with search, category filtering, and transaction type filtering.
-- **Insights**: Visual breakdown of spending categories, top spending category, and savings rate.
-- **Role-Based UI**: Toggle between Viewer (read-only) and Admin (can add, edit, delete transactions).
-- **State Management**: Persists state in `localStorage`. Comes pre-seeded with 20+ realistic transactions.
-- **Design**: Dark theme with amber accents, responsive layout, modal for transaction management, and toast notifications.
+## 🚀 Features
 
-## Prerequisites
+* 📊 Dashboard with total balance, income, and expenses
+* 💸 Add, edit, and delete transactions
+* 🔍 Search, filter, and sort transactions
+* 📈 Monthly overview chart
+* 🧠 Insights like top spending category & savings rate
+* 🔐 Role-based UI (Viewer / Admin)
+* 💾 Data persistence using localStorage
 
-- Node.js and npm installed.
+---
 
-## Setup and Running
+## 🛠 Tech Stack
 
-1. **Install dependencies**:
-   \`\`\`bash
-   npm install
-   \`\`\`
+* HTML5
+* CSS3 (Modern UI + Responsive Design)
+* TypeScript → Compiled to JavaScript
+* Browser LocalStorage
 
-2. **Compile TypeScript**:
-   \`\`\`bash
-   npx tsc
-   \`\`\`
-   This will generate the \`app.js\` file from \`app.ts\`.
+---
 
-3. **Run a local server**:
-   You can use any simple HTTP server. For example, using Python:
-   \`\`\`bash
-   python3 -m http.server 8000
-   \`\`\`
-   Or using Node.js \`serve\` package:
-   \`\`\`bash
-   npx serve .
-   \`\`\`
+## 📂 Project Structure
 
-4. **Open in browser**:
-   Navigate to \`http://localhost:8000\` (or whichever port your server uses) to view the dashboard.
+```
+finance-dashboard/
+│
+├── index.html        # Main HTML file
+├── styles.css        # Styling
+├── app.ts            # TypeScript source code
+├── app.js            # Compiled JavaScript
+├── package.json
+├── tsconfig.json
+├── README.md
+```
+
+---
+
+## ▶️ How to Run (Local Setup)
+
+### 1. Clone the repository
+
+```
+git clone https://github.com/theanirudh18/finance-dsahboard.git
+```
+
+### 2. Go to project folder
+
+```
+cd finance-dsahboard
+```
+
+### 3. Install dependencies (if needed)
+
+```
+npm install
+```
+
+### 4. Compile TypeScript
+
+```
+tsc app.ts
+```
+
+### 5. Run the project
+
+👉 Simply open:
+
+```
+index.html
+```
+
+in your browser
+
+---
+
+## 🌐 Live Demo
+
+👉 https://theanirudh18.github.io/finance-dsahboard/
+
+---
+
+## ⚠️ Notes
+
+* Data is stored in **browser localStorage**
+* First time load may show empty data
+  → Add transactions in **Admin mode**
+* Works best in modern browsers (Chrome, Edge)
+
+---
+
+## 📌 Future Improvements
+
+* 📊 Advanced charts (Chart.js)
+* 🔐 Authentication system
+* ☁️ Backend integration (Firebase / Node.js)
+* 📱 Mobile responsiveness improvements
+
+---
+
+## 👨‍💻 Author
+
+**Anirudh Singh**
+
+* LinkedIn: linkedin.com/in/anirudh-singh-a11aa52b7
+* Email: [anirudhhhsingh18@gmail.com](mailto:anirudhhhsingh18@gmail.com)
+
+---
+
+⭐ If you like this project, give it a star!
