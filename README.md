@@ -82,7 +82,7 @@ in your browser
 
 ## 🌐 Live Demo
 
-👉 https://theanirudh18.github.io/finance-dsahboard/
+👉 https://theanirudh18.github.io/finance-dsahboard/   (its showing only dashboard its not working)
 
 ---
 
